@@ -2,7 +2,9 @@
    Portfolio — stylesheet
    Sections:  1. Tokens   2. Reset   3. Base type   4. Layout
               5. Header   6. Footer  7. Hero  8. Doors
-              9. Project cards        10. Utilities
+              9. Project cards       10. Buttons
+              11. Work with me       12. About        13. Contact
+              14. Utilities
    ========================================================================== */
 
 
@@ -452,7 +454,152 @@ section[id] { scroll-margin-top: var(--sp-6); }
 
 
 /* --------------------------------------------------------------------------
-   10. UTILITIES
+   10. BUTTONS
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--accent);
+  color: var(--paper);
+  border: 1px solid var(--accent);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.btn:hover { background: transparent; color: var(--accent); }
+
+.btn--quiet { background: transparent; color: var(--accent); }
+.btn--quiet:hover { background: var(--accent); color: var(--paper); }
+
+
+/* Shared intro paragraph for a section. */
+.lede {
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 56ch;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. WORK WITH ME
+   -------------------------------------------------------------------------- */
+
+.offers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--sp-5);
+  margin-top: var(--sp-7);
+  padding: 0;
+  list-style: none;
+}
+.offers li { border-top: 2px solid var(--ink); padding-top: var(--sp-3); }
+.offers h3 { font-size: var(--fs-md); margin-bottom: var(--sp-2); }
+.offers p { font-size: var(--fs-sm); color: var(--ink-2); }
+
+/* Numbered because these genuinely happen in order. Never number a list
+   that isn't a sequence — the numbers would be saying something untrue. */
+.steps {
+  display: grid;
+  gap: var(--sp-4);
+  counter-reset: step;
+  max-width: var(--measure);
+  margin-top: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+}
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--accent);
+}
+.steps p { font-size: var(--fs-sm); color: var(--ink-2); }
+.steps strong { display: block; color: var(--ink); font-weight: 500; font-size: var(--fs-base); }
+
+.pricing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--rule);
+}
+.pricing__figure { font-family: var(--font-display); font-size: var(--fs-lg); }
+.pricing__note { font-size: var(--fs-sm); color: var(--ink-2); max-width: 44ch; }
+
+
+/* --------------------------------------------------------------------------
+   12. ABOUT
+   -------------------------------------------------------------------------- */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: var(--sp-7);
+  align-items: start;
+  margin-top: var(--sp-6);
+}
+@media (max-width: 52rem) { .about { grid-template-columns: 1fr; gap: var(--sp-5); } }
+
+.about__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+.about__body > * + * { margin-top: var(--sp-4); }
+.about__body h2 { font-size: var(--fs-lg); margin-top: var(--sp-6); }
+
+
+/* --------------------------------------------------------------------------
+   13. CONTACT
+   -------------------------------------------------------------------------- */
+
+.contact__list {
+  max-width: var(--measure);
+  margin-top: var(--sp-6);
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+.contact__list li {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--sp-4);
+  align-items: baseline;
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid var(--rule);
+}
+@media (max-width: 34rem) {
+  .contact__list li { grid-template-columns: 1fr; gap: var(--sp-1); }
+}
+.contact__list a { text-decoration: none; }
+.contact__list a:hover { text-decoration: underline; }
+.contact__fallback { color: var(--ink-3); font-size: var(--fs-sm); }
+
+
+/* --------------------------------------------------------------------------
+   14. UTILITIES
    -------------------------------------------------------------------------- */
 
 /* Present for screen readers, invisible on screen. */

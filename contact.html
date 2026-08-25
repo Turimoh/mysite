@@ -35,14 +35,37 @@
   </header>
 
   <main id="main">
-    <div class="wrap section">
-      <!-- Temporary scaffolding. Replaced in a later phase. -->
-      <div class="scaffold">
-        <p class="label">Phase 1 &middot; foundations in place</p>
+    <section class="section">
+      <div class="wrap">
         <h1>Contact</h1>
-        <p>Phase 4 adds phone, email and LinkedIn, with the number assembled in JavaScript.</p>
+        <p class="lede">
+          A project, a role, or a question &mdash; any of these reach me. I answer everything
+          within a working day.
+        </p>
+        <ul class="contact__list">
+          <li>
+            <span class="label">Phone</span>
+            <!-- TODO(content): your number in three parts — country|area|rest, digits only -->
+            <span data-tel="44|7700|900123">
+              <span class="contact__fallback">Enable JavaScript to see the number, or email me.</span>
+            </span>
+          </li>
+          <li>
+            <span class="label">Email</span>
+            <!-- TODO(content): your real address, in both places -->
+            <a href="mailto:you@example.com">you@example.com</a>
+          </li>
+          <li>
+            <span class="label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/your-handle">linkedin.com/in/your-handle</a>
+          </li>
+          <li>
+            <span class="label">GitHub</span>
+            <a href="https://github.com/your-handle">github.com/your-handle</a>
+          </li>
+        </ul>
       </div>
-    </div>
+    </section>
   </main>
 
   <!-- ==== SHARED FOOTER — keep identical across every page ==== -->
@@ -57,6 +80,8 @@
       </ul>
     </div>
   </footer>
+
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>

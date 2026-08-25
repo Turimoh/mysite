@@ -35,14 +35,48 @@
   </header>
 
   <main id="main">
-    <div class="wrap section">
-      <!-- Temporary scaffolding. Replaced in a later phase. -->
-      <div class="scaffold">
-        <p class="label">Phase 1 &middot; foundations in place</p>
+    <section class="section">
+      <div class="wrap">
         <h1>About</h1>
-        <p>Phase 4 adds your bio, your photo and the CV download.</p>
+
+        <div class="about">
+          <div class="about__photo">
+            <img src="img/portrait.svg" width="400" height="500"
+                 alt="TODO(content): describe your photo, e.g. Mo, sitting at a desk">
+          </div>
+
+          <div class="about__body">
+            <!-- TODO(content): your bio, in your own voice. Where you came from
+                 matters more than where you studied. Three or four paragraphs. -->
+            <p class="lede">
+              A paragraph on who you are and what you do now. Lead with the thing that
+              makes you different, not with the word &ldquo;passionate&rdquo;.
+            </p>
+            <p>
+              A paragraph on how you got here &mdash; what you did before, and what made you
+              switch. Career changers: this is your advantage, not something to hide.
+              The retail years taught you more about difficult clients than any course did.
+            </p>
+            <p>
+              A paragraph on how you like to work. What you care about getting right.
+              What a client or a team can expect from you.
+            </p>
+
+            <h2>What I&rsquo;m looking for</h2>
+            <!-- TODO(content): be specific. Vague availability gets vague responses. -->
+            <p>
+              The kind of role or project you want next, and when you&rsquo;re free. Name the
+              thing &mdash; junior front-end, contract, part-time, remote, wherever you are.
+            </p>
+
+            <p>
+              <!-- TODO(setup): add cv.pdf to this folder, or this link will 404 -->
+              <a class="btn" href="cv.pdf" download>Download CV (PDF)</a>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <!-- ==== SHARED FOOTER — keep identical across every page ==== -->
@@ -57,6 +91,8 @@
       </ul>
     </div>
   </footer>
+
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>
