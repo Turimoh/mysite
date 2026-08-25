@@ -4,7 +4,8 @@
               5. Header   6. Footer  7. Hero  8. Doors
               9. Project cards       10. Buttons
               11. Work with me       12. About        13. Contact
-              14. Utilities
+              14. Theme toggle       15. Scroll reveals
+              16. Utilities
    ========================================================================== */
 
 
@@ -599,7 +600,64 @@ section[id] { scroll-margin-top: var(--sp-6); }
 
 
 /* --------------------------------------------------------------------------
-   14. UTILITIES
+   14. THEME TOGGLE
+   -------------------------------------------------------------------------- */
+
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+/* Hidden by default. The .js class is added by the inline script in <head>,
+   so a browser with JavaScript off never sees a button that does nothing. */
+.theme-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.js .theme-toggle { display: inline-flex; }
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Show the icon for the theme you'd switch TO, not the one you're in. */
+:root[data-theme="dark"] .icon-moon { display: none; }
+:root:not([data-theme="dark"]) .icon-sun { display: none; }
+
+
+/* --------------------------------------------------------------------------
+   15. SCROLL REVEALS
+
+   Note the .js prefix on every rule. Without JavaScript nothing is hidden,
+   so a failed script can never leave the page blank. This is the single
+   most common way scroll animations break a site.
+   -------------------------------------------------------------------------- */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Anyone who asked for less motion gets the content, immediately, with no move. */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; transform: none; }
+}
+
+
+/* --------------------------------------------------------------------------
+   16. UTILITIES
    -------------------------------------------------------------------------- */
 
 /* Present for screen readers, invisible on screen. */
