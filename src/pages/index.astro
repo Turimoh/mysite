@@ -1,0 +1,238 @@
+---
+// Every file in src/pages/ becomes a page. This one is the home page, "/".
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ContactList from '../components/ContactList.astro';
+import { Image } from 'astro:assets';
+import photo from '../assets/maureen-square.jpg';
+
+// The two ways a visitor can go from the hero: one door per audience.
+const doors = [
+  {
+    href: '#work-with-me',
+    label: 'Need a website?',
+    title: 'Let’s build it',
+    text: 'Freelance projects for small teams and independent businesses.',
+  },
+  {
+    href: '#work',
+    label: 'Hiring?',
+    title: 'See how I work',
+    text: 'Selected projects, the decisions behind them, and a CV to download.',
+  },
+];
+
+// Numbered because these genuinely happen in order.
+const steps = [
+  { title: 'A call, free',     text: 'Twenty minutes on what you need and whether I’m the right person. If I’m not, I’ll say so.' },
+  { title: 'A fixed quote',    text: 'One price, one timeline, written down. It doesn’t move unless you change what you asked for.' },
+  { title: 'Build and review', text: 'You see it working early and often, not once at the end when it’s too late to change.' },
+  { title: 'Launch',           text: 'It goes live, and I show you how to make the changes you’ll want to make yourself.' },
+];
+
+// Shared class lists, so every section heading and button matches.
+const h2 = 'mb-4 text-3xl font-bold text-blue-600 md:text-4xl dark:text-blue-400';
+const lede = 'mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300';
+---
+
+<Base
+  title="Maureen Muturi — Front-end developer"
+  description="Maureen Muturi, front-end developer in Nairobi. Fast, accessible websites for small teams and independent businesses. Available now for roles and freelance."
+>
+
+  <!-- ==== HERO ==== -->
+  <section class="relative flex min-h-[85vh] items-center overflow-hidden">
+
+    <!-- Faint grid that fades out towards the bottom instead of stopping in a hard line.
+         mask-image: fully visible where the gradient is black, invisible where transparent. -->
+    <div aria-hidden="true" class="bg-grid pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_55%,transparent)]"></div>
+
+    <!-- Decoration only. aria-hidden keeps screen readers from announcing it;
+         hidden md:block keeps it off small screens where it would crowd the text. -->
+    <div aria-hidden="true" class="pointer-events-none select-none">
+      <span class="absolute top-10 left-10 hidden size-4 rounded-full bg-green-400 opacity-60 motion-safe:animate-float-slow md:block"></span>
+      <span class="absolute bottom-24 left-1/3 hidden size-3 rounded-full bg-blue-400 opacity-50 motion-safe:animate-float-slower md:block"></span>
+      <span class="absolute top-1/4 right-1/3 hidden size-2 rounded-full bg-purple-400 opacity-40 motion-safe:animate-float-slowest md:block"></span>
+      <span class="absolute right-10 bottom-10 hidden size-3 rounded-full bg-yellow-300 opacity-40 motion-safe:animate-float-slow md:block"></span>
+      <span class="absolute top-24 right-24 hidden size-2.5 rounded-full bg-blue-300 opacity-40 motion-safe:animate-float-slower md:block"></span>
+      <span class="absolute top-1/2 left-8 hidden size-2 rounded-full bg-yellow-300 opacity-40 motion-safe:animate-float-slowest md:block"></span>
+    </div>
+
+    <div class="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-16 md:grid-cols-2">
+
+      <!-- Text. order-2 on phones puts it under the photo; md:order-1 puts it first on wider screens. -->
+      <div class="order-2 flex flex-col items-center gap-6 text-center md:order-1 md:items-start md:text-left">
+        <p class="inline-flex items-center gap-2 rounded-full border border-green-300 bg-white px-4 py-2 text-sm font-medium text-green-700 shadow-lg dark:border-green-700 dark:bg-gray-900 dark:text-green-300">
+          <span class="size-2 rounded-full bg-green-500 motion-safe:animate-pulse" aria-hidden="true"></span>
+          Open to roles &amp; freelance
+        </p>
+
+        <p class="text-sm font-medium tracking-widest text-gray-500 uppercase dark:text-gray-400">
+          Front-end developer &middot; Nairobi &amp; remote
+        </p>
+
+        <h1 class="max-w-[20ch] text-4xl font-bold tracking-tight text-balance text-blue-600 md:text-5xl lg:text-6xl dark:text-blue-400">
+          Websites that load fast and work everywhere.
+        </h1>
+
+        <p class="max-w-[54ch] text-lg text-gray-700 md:text-xl dark:text-gray-300">
+          I&rsquo;m <strong class="font-semibold text-green-600 dark:text-green-400">Maureen</strong>, a front-end developer in Nairobi. I build sites for
+          small teams and independent businesses &mdash; quick on a phone, quick on a slow
+          connection, and straightforward to update once I hand them over. I pick the tools to fit
+          the job, not the other way round.
+        </p>
+      </div>
+
+      <!-- Photo, with a blurred colour glow behind it. -->
+      <div class="relative order-1 md:order-2">
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-r from-green-400/20 to-blue-500/20 blur-3xl motion-safe:animate-pulse"></div>
+        <div class="relative mx-auto size-64 motion-safe:animate-float md:size-80">
+          <div aria-hidden="true" class="absolute inset-0 rounded-full bg-gradient-to-r from-green-400/30 to-blue-500/30 blur-lg"></div>
+          <!-- <Image> makes small WebP copies at build time; the browser picks the size it needs.
+               loading="eager": this photo is on screen immediately, so don't make it wait. -->
+          <Image src={photo} alt="Black-and-white photo of Maureen Muturi"
+                 widths={[320, 640]} sizes="(min-width: 768px) 320px, 256px"
+                 loading="eager" fetchpriority="high"
+                 class="relative size-full rounded-full object-cover shadow-2xl ring-4 ring-green-400/50 dark:ring-green-600/50" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== THE TWO DOORS ====
+       Both audiences get addressed before anyone has to scroll twice. -->
+  <section aria-label="Where would you like to go?" class="px-6 pb-20">
+    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
+      {doors.map((door) => (
+        <a href={door.href} data-reveal
+           class="group grid gap-2 rounded-xl border border-gray-200 bg-white p-6 text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl dark:border-gray-700 dark:bg-gray-900 dark:text-white">
+          <span class="text-xs font-semibold tracking-widest text-green-600 uppercase dark:text-green-400">{door.label}</span>
+          <span class="text-2xl font-bold">{door.title}</span>
+          <span class="max-w-[34ch] text-gray-600 dark:text-gray-300">{door.text}</span>
+          <span aria-hidden="true" class="mt-2 text-xl text-blue-600 transition-transform group-hover:translate-x-1 dark:text-blue-400">&rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ==== SELECTED WORK ==== -->
+  <section id="work" tabindex="-1" class="bg-gray-100 px-6 py-20 dark:bg-gray-900/40">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 text-center">
+        <h2 class={h2}>Selected work</h2>
+      </div>
+
+      <!-- auto-fill + minmax: 3 across, then 2, then 1, with no breakpoints.
+           auto-fill (not auto-fit) keeps a lone card card-sized instead of stretching. -->
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,19rem),1fr))] gap-8">
+        <!-- TODO(content): replace img/work-1.svg with a real screenshot, then rewrite the alt text -->
+        <ProjectCard
+          title="This site"
+          text="Three pages, dark mode, and built to stay quick on a slow connection. The home page splits in two at the top: one door for someone hiring, one for someone who needs a website."
+          stack="Astro and Tailwind CSS. Deployed on Cloudflare."
+          image="/img/work-1.svg"
+          alt="Placeholder graphic standing in for a screenshot of this site"
+          links={[{ href: 'https://github.com/Turimoh/mysite', label: 'GitHub' }]}
+        />
+        <!-- Next project: add another <ProjectCard … /> here. See ProjectCard.astro for an example. -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== WORK WITH ME ==== -->
+  <section id="work-with-me" tabindex="-1" class="px-6 py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 text-center">
+        <h2 class={h2}>Work with me</h2>
+        <p class={lede}>
+          I take on a small number of projects at a time, which means you deal with me
+          directly from first call to launch &mdash; no account manager, no handover.
+        </p>
+      </div>
+
+      <ul class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+        <li data-reveal class="flex flex-col items-center rounded-lg border border-gray-200 bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-900">
+          <span aria-hidden="true" class="mb-4 flex size-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M12 12v5M9.5 14.5h5"/>
+            </svg>
+          </span>
+          <h3 class="mb-2 text-xl font-semibold">New websites</h3>
+          <p class="text-gray-600 dark:text-gray-300">A site built from scratch for a business that doesn&rsquo;t have one, or has one it&rsquo;s embarrassed by.</p>
+        </li>
+        <li data-reveal class="flex flex-col items-center rounded-lg border border-gray-200 bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-900">
+          <span aria-hidden="true" class="mb-4 flex size-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/>
+            </svg>
+          </span>
+          <h3 class="mb-2 text-xl font-semibold">Rebuilds</h3>
+          <p class="text-gray-600 dark:text-gray-300">An existing site that&rsquo;s slow, awkward on a phone, or impossible to update without calling someone.</p>
+        </li>
+      </ul>
+
+      <!-- How it works: a vertical timeline. -->
+      <h3 class="mt-20 mb-10 text-center text-2xl font-bold">How it works</h3>
+      <div class="relative mx-auto max-w-3xl">
+        <!-- The line down the left. -->
+        <div aria-hidden="true" class="absolute top-0 left-4 h-full w-0.5 bg-gradient-to-b from-green-500 to-blue-500"></div>
+
+        <ol class="space-y-8">
+          {steps.map((step, i) => (
+            <li data-reveal class="relative pl-14">
+              <span class="absolute top-5 left-4 flex size-8 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-blue-500 text-sm font-bold text-white shadow-lg">
+                {i + 1}
+              </span>
+              <div class="rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-gray-900">
+                <p class="mb-1 text-lg font-bold text-gray-900 dark:text-white">{step.title}</p>
+                <p class="text-gray-600 dark:text-gray-300">{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="mx-auto mt-16 flex max-w-3xl flex-col items-center justify-between gap-6 rounded-2xl bg-gray-100 p-8 text-center shadow-lg md:flex-row md:text-left dark:bg-gray-900">
+        <p class="max-w-[44ch] text-gray-700 dark:text-gray-300">
+          Most small business sites land between two and six pages. Tell me what you need and I&rsquo;ll give you a real number.
+        </p>
+        <a href="/contact/" class="shrink-0 rounded-full bg-blue-600 px-6 py-3 font-medium text-white transition-all hover:scale-105 hover:opacity-90 dark:bg-blue-500">
+          Start a project &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== TESTIMONIALS ====
+       Uncomment when you have TWO real quotes with names and roles attached.
+       One on its own reads worse than none at all.
+
+  <section class="bg-gray-100 px-6 py-20 dark:bg-gray-900/40">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-12 text-center text-3xl font-bold text-blue-600 md:text-4xl dark:text-blue-400">What people say</h2>
+      <ul class="grid gap-8 md:grid-cols-2">
+        <li class="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-900">
+          <p>&ldquo;Quote goes here.&rdquo;</p>
+          <p class="mt-4 text-sm text-gray-500">Name &middot; Role, Company</p>
+        </li>
+        <li class="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-900">
+          <p>&ldquo;Second quote goes here.&rdquo;</p>
+          <p class="mt-4 text-sm text-gray-500">Name &middot; Role, Company</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  -->
+
+  <!-- ==== CONTACT ==== -->
+  <section id="contact" tabindex="-1" class="bg-gray-100 px-6 py-20 dark:bg-gray-900/40">
+    <div class="mx-auto max-w-4xl">
+      <div class="mb-12 text-center">
+        <h2 class={h2}>Get in touch</h2>
+        <p class={lede}>Whether it&rsquo;s a project or a role &mdash; the quickest way to reach me is below.</p>
+      </div>
+      <ContactList />
+    </div>
+  </section>
+
+</Base>

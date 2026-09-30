@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img">
-  <rect width="400" height="500" fill="#E9E4DE"/>
-  <text x="200" y="246" text-anchor="middle" font-family="IBM Plex Mono, monospace"
-        font-size="15" letter-spacing="3" fill="#8C8177">YOUR PHOTO</text>
-  <text x="200" y="272" text-anchor="middle" font-family="IBM Plex Mono, monospace"
-        font-size="11" letter-spacing="1" fill="#B3A99E">replace with img/portrait.jpg</text>
-</svg>

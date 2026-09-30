@@ -1,0 +1,18 @@
+---
+// Cloudflare shows this for any address that doesn't exist (see wrangler.jsonc).
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found — Maureen Muturi" description="That page does not exist." noindex>
+  <section class="relative flex min-h-[60vh] items-center px-6 py-20">
+    <div aria-hidden="true" class="bg-grid pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_55%,transparent)]"></div>
+    <div class="relative mx-auto max-w-xl rounded-2xl bg-white/70 p-10 text-center shadow-xl backdrop-blur-lg dark:bg-gray-900/70">
+      <p class="mb-2 text-6xl font-bold text-green-600 dark:text-green-400">404</p>
+      <h1 class="mb-3 text-3xl font-bold text-blue-600 dark:text-blue-400">Page not found</h1>
+      <p class="mb-8 text-gray-600 dark:text-gray-300">That link went nowhere. Try the navigation above.</p>
+      <a href="/" class="inline-block rounded-full border-2 border-green-600 px-6 py-2 font-medium text-green-600 transition-all hover:scale-105 hover:bg-green-600 hover:text-white dark:text-green-400">
+        Back to home
+      </a>
+    </div>
+  </section>
+</Base>

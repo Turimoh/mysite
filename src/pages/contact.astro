@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactList from '../components/ContactList.astro';
+---
+
+<Base
+  title="Contact — Maureen Muturi"
+  description="Get in touch about a project or a role — by phone, email or LinkedIn."
+>
+  <section class="px-6 py-20">
+    <div class="mx-auto max-w-4xl">
+      <div class="mb-12 text-center">
+        <h1 class="mb-4 text-4xl font-bold text-blue-600 md:text-5xl dark:text-blue-400">Contact</h1>
+        <p class="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+          A project, a role, or a question &mdash; any of these reach me. I answer everything
+          within a working day.
+        </p>
+      </div>
+      <ContactList />
+    </div>
+  </section>
+</Base>

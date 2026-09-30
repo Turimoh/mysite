@@ -1,0 +1,49 @@
+---
+// One project card. To add a project, add one <ProjectCard …/> in index.astro:
+//
+//   <ProjectCard
+//     title="Project name"
+//     text="One sentence on what it is and who it's for. One on the interesting part. Under 40 words."
+//     stack="The tools you used"
+//     image="/img/work-2.svg"
+//     alt="Describe what the screenshot shows"
+//     links={[{ href: 'https://…', label: 'Live site' }, { href: 'https://github.com/…', label: 'GitHub' }]}
+//   />
+interface Props {
+  title: string;
+  text: string;
+  stack: string;
+  image: string;
+  alt: string;
+  links: { href: string; label: string }[];
+}
+const { title, text, stack, image, alt, links } = Astro.props;
+---
+
+<article data-reveal class="group flex flex-col overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-gray-900">
+  <div class="overflow-hidden bg-gray-100 dark:bg-gray-700">
+    <img src={image} alt={alt} width="800" height="500" loading="lazy"
+         class="aspect-[8/5] w-full object-cover transition-transform duration-500 group-hover:scale-105">
+  </div>
+
+  <div class="flex flex-1 flex-col gap-3 p-6">
+    <h3 class="text-lg font-semibold text-green-600 dark:text-green-400">{title}</h3>
+    <p class="text-gray-600 dark:text-gray-300">{text}</p>
+
+    <p class="self-start rounded bg-gray-100 px-2 py-1 text-sm text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+      Built with &mdash; {stack}
+    </p>
+
+    <!-- mt-auto pushes the links to the bottom, so cards in a row line up
+         even when their descriptions are different lengths. -->
+    <ul class="mt-auto flex flex-wrap gap-4 pt-2">
+      {links.map(({ href, label }) => (
+        <li>
+          <a href={href} class="text-sm font-medium text-blue-600 transition-colors hover:text-green-600 dark:text-blue-400 dark:hover:text-green-400">
+            {label} &#8599;
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</article>

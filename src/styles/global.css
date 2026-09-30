@@ -1,0 +1,162 @@
+/* ==========================================================================
+   global.css — loaded on every page by src/layouts/Base.astro
+
+   Most styling now lives in the HTML as Tailwind classes. This file holds
+   only what classes can't express neatly: theme settings, animations, and
+   a few effects built from pseudo-elements.
+   ========================================================================== */
+
+/* Pulls in all of Tailwind. Only the classes actually used in src/ end up
+   in the finished CSS file — the rest is thrown away at build time. */
+@import "tailwindcss";
+
+
+/* --------------------------------------------------------------------------
+   Dark mode
+
+   By default Tailwind's `dark:` classes follow the operating system. This
+   line makes them follow the data-theme="dark" attribute instead — the one
+   the theme toggle already sets on <html>. So the toggle keeps working.
+   -------------------------------------------------------------------------- */
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+
+/* --------------------------------------------------------------------------
+   Theme additions
+
+   Anything declared here becomes a class. --animate-float → `animate-float`.
+   Colours need nothing: the reference design uses Tailwind's stock palette.
+   -------------------------------------------------------------------------- */
+
+@theme {
+  /* The gentle up-and-down drift on the hero photo and floating dots.
+     Different distances and speeds so they never move in lockstep. */
+  --animate-float:         float         6s ease-in-out infinite;
+  --animate-float-slow:    float-slow    5s ease-in-out infinite;
+  --animate-float-slower:  float-slower  7s ease-in-out infinite;
+  --animate-float-slowest: float-slowest 9s ease-in-out infinite;
+
+  @keyframes float         { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+  @keyframes float-slow    { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+  @keyframes float-slower  { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-24px); } }
+  @keyframes float-slowest { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-32px); } }
+}
+
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  /* Tells the browser to draw scrollbars and form controls to match. */
+  :root { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; }
+
+  /* Visible keyboard focus. Never remove this without replacing it. */
+  :focus-visible {
+    outline: 2px solid var(--color-blue-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Jump links (#work, #contact…) stop below the sticky header,
+     not hidden underneath it. */
+  [id] { scroll-margin-top: 6rem; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Nav underline — grows from the left on hover, stays on the current page.
+
+   ::after is an extra, invisible box the browser draws after the link's
+   text. We give it a height and a colour, start it at width 0, and animate
+   the width. aria-current is set by Header.astro, so the styling and the
+   screen-reader information can never disagree.
+   -------------------------------------------------------------------------- */
+
+@utility nav-underline {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover::after,
+  &:focus-visible::after,
+  &[aria-current="page"]::after { width: 100%; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Faint grid behind the hero. Two stripes of 1px lines — one running across,
+   one running down — tiled every 40px.
+   -------------------------------------------------------------------------- */
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right,  var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  --grid-line: rgb(37 99 235 / 0.06);
+
+  [data-theme="dark"] & { --grid-line: rgb(96 165 250 / 0.08); }
+}
+
+
+/* --------------------------------------------------------------------------
+   Scroll reveals
+
+   The .js prefix matters. Without JavaScript nothing is hidden, so a failed
+   script can never leave the page blank — the most common way scroll
+   animations break a site. main.js adds .is-revealed as things scroll in.
+   -------------------------------------------------------------------------- */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Theme toggle — hidden until the page knows JavaScript is running, so no
+   one ever sees a button that does nothing. Then show the icon for the
+   theme you'd switch TO.
+   -------------------------------------------------------------------------- */
+
+.theme-toggle { display: none; }
+.js .theme-toggle { display: inline-flex; }
+:root[data-theme="dark"] .icon-moon { display: none; }
+:root:not([data-theme="dark"]) .icon-sun { display: none; }
+
+
+/* --------------------------------------------------------------------------
+   Reduced motion — anyone who has asked their device for less movement
+   gets none: no floating, no pulsing, no reveals. A backstop on top of the
+   motion-safe: classes in the markup.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
+}

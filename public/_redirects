@@ -1,0 +1,5 @@
+# Old addresses → new ones. 301 means "moved permanently", so search
+# engines and old bookmarks follow along instead of hitting a 404.
+/about.html    /about/    301
+/contact.html  /contact/  301
+/work.html     /          301

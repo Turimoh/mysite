@@ -1,0 +1,13 @@
+// Cloudflare's settings. The site is fully static — just files — so all
+// Cloudflare needs to know is where the finished files are.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "maureen-portfolio",
+  "compatibility_date": "2026-09-30",
+  "assets": {
+    // The folder `npm run build` fills.
+    "directory": "./dist",
+    // Any address that doesn't match a file gets dist/404.html, with a real 404 status.
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img">
+  <rect width="800" height="500" fill="#F3F4F6"/>
+  <text x="400" y="243" text-anchor="middle" font-family="ui-monospace, monospace"
+        font-size="19" letter-spacing="3" fill="#6B7280">SCREENSHOT 1</text>
+  <text x="400" y="272" text-anchor="middle" font-family="ui-monospace, monospace"
+        font-size="13" letter-spacing="1" fill="#9CA3AF">replace with img/work-1.jpg</text>
+</svg>

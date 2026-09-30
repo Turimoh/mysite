@@ -1,0 +1,20 @@
+# Cloudflare reads this file and adds these headers to matching responses.
+# (Translated from the old netlify.toml.)
+
+# Sensible security headers on every page.
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Images barely change, so browsers can keep them for a year.
+/img/*
+  Cache-Control: public, max-age=31536000
+
+# Astro's CSS and JS. Every build gives these files a new name whenever their
+# contents change (e.g. index.3f9a1c.css), so an edit always arrives as a
+# brand-new file. That makes it safe to cache them forever — which the old
+# setup couldn't do, because style.css kept the same name after every edit.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

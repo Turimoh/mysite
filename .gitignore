@@ -1,3 +1,15 @@
 .DS_Store
 *.log
+
+# Downloaded tools — recreated by `npm install`, never edited by hand.
 node_modules/
+
+# Build output and Astro/Cloudflare caches — recreated on every build.
+dist/
+.astro/
+.wrangler/
+
+# Working notes. Only dist/ is published now, so these can't leak onto the
+# site — but they're private, so they stay out of git too.
+.notes/
+content-brief.md

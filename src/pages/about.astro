@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import photo from '../assets/maureen-portrait.jpg';
+---
+
+<Base
+  title="About — Maureen Muturi"
+  description="How I got into front-end development, how I work, and what I'm looking for next: a junior front-end role in Nairobi or remote, available now."
+>
+  <section class="px-6 py-20">
+    <div class="mx-auto max-w-6xl">
+      <h1 class="mb-12 text-center text-4xl font-bold text-blue-600 md:text-5xl dark:text-blue-400">About</h1>
+
+      <div data-reveal class="grid items-start gap-12 md:grid-cols-[17rem_1fr]">
+        <div class="mx-auto w-full max-w-[17rem]">
+          <Image src={photo} alt="Black-and-white photo of Maureen Muturi"
+                 widths={[272, 544, 802]} sizes="17rem"
+                 class="aspect-[4/5] w-full rounded-2xl object-cover shadow-lg ring-4 ring-green-400/40 dark:ring-green-600/40" />
+        </div>
+
+        <!-- [&>*+*]:mt-4 = "every child after the first gets space above it". -->
+        <div class="max-w-[68ch] text-gray-700 dark:text-gray-300 [&>*+*]:mt-4">
+          <p class="text-xl text-gray-900 dark:text-gray-100">
+            I&rsquo;m a front-end developer in Nairobi, working with small teams and independent
+            businesses. Before this I worked in customer-facing jobs, which is where I got used
+            to unclear briefs and to people who know what they want but not how to describe it.
+          </p>
+          <p>
+            I started building for the web because someone showed me and it stuck. I taught
+            myself first, then did a bootcamp, then worked with a mentor, <a href="https://gabykaram.com" class="font-medium text-blue-600 underline decoration-2 underline-offset-4 hover:text-green-600 dark:text-blue-400 dark:hover:text-green-400">Gaby Karam</a>. Those two gave me what teaching
+            myself hadn&rsquo;t: structure, and the habit of finishing things instead of leaving
+            them half-built.
+          </p>
+          <p>
+            When I build something, what I check hardest is how it behaves on a slow connection
+            and a cheap phone &mdash; the conditions most people actually visit in, and the first
+            ones to get skipped. I&rsquo;d rather hand over something plain that loads than
+            something impressive that doesn&rsquo;t.
+          </p>
+
+          <h2 class="mt-10! text-2xl font-bold text-blue-600 dark:text-blue-400">What I&rsquo;m looking for</h2>
+          <p>
+            A junior front-end role, in Nairobi or remote, and I&rsquo;m available now. I take on
+            freelance work alongside it &mdash; new sites and rebuilds &mdash; so either
+            conversation is worth having.
+          </p>
+
+          <p class="mt-8!">
+            <!-- LAUNCH BLOCKER: public/maureen-muturi-cv.pdf must exist. This button 404s without it. -->
+            <a href="/maureen-muturi-cv.pdf" download
+               class="inline-block rounded-full bg-blue-600 px-6 py-3 font-medium text-white transition-all hover:scale-105 hover:opacity-90 dark:bg-blue-500">
+              Download CV (PDF)
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

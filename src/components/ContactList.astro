@@ -1,0 +1,30 @@
+---
+// The contact details, used on the home page and the contact page.
+// Change a detail here and both pages update.
+const rows = [
+  { label: 'Email',    href: 'mailto:maureenmuturi44@gmail.com',            text: 'maureenmuturi44@gmail.com' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/maureen-muturi/', text: 'linkedin.com/in/maureen-muturi' },
+  { label: 'GitHub',   href: 'https://github.com/turimoh',                  text: 'github.com/turimoh' },
+];
+const labelClass = 'text-sm font-semibold tracking-widest text-gray-500 uppercase dark:text-gray-400';
+const rowClass = 'grid gap-1 py-4 sm:grid-cols-[7rem_1fr] sm:items-baseline sm:gap-4';
+const linkClass = 'break-words font-medium text-blue-600 transition-colors hover:text-green-600 dark:text-blue-400 dark:hover:text-green-400';
+---
+
+<!-- Frosted-glass card: see-through white, with whatever is behind it blurred. -->
+<ul data-reveal class="divide-y divide-gray-200 rounded-2xl bg-white/50 px-8 py-4 shadow-xl backdrop-blur-lg dark:divide-gray-700 dark:bg-gray-800/50">
+  <li class={rowClass}>
+    <span class={labelClass}>Phone</span>
+    <!-- The number is stored in pieces and joined by main.js, which defeats
+         scrapers that pattern-match raw page source. -->
+    <span data-tel="254|746|575|082" class={linkClass}>
+      <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Enable JavaScript to see the number, or email me.</span>
+    </span>
+  </li>
+  {rows.map((row) => (
+    <li class={rowClass}>
+      <span class={labelClass}>{row.label}</span>
+      <a href={row.href} class={linkClass}>{row.text}</a>
+    </li>
+  ))}
+</ul>
