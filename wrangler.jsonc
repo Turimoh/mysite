@@ -4,6 +4,12 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "maureen-portfolio",
   "compatibility_date": "2026-09-30",
+  // The addresses this site answers on. custom_domain: Cloudflare creates the
+  // DNS record and the https certificate for each one automatically.
+  "routes": [
+    { "pattern": "maureenmuturi.com", "custom_domain": true },
+    { "pattern": "www.maureenmuturi.com", "custom_domain": true }
+  ],
   "assets": {
     // The folder `npm run build` fills.
     "directory": "./dist",
