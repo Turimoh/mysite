@@ -4,6 +4,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "maureen-portfolio",
   "compatibility_date": "2026-09-30",
+  // Keep the free maureen-portfolio.….workers.dev address on too — handy for
+  // checking a deploy. Search engines are pointed at the real domain by the
+  // canonical tag on every page, so it doesn't count as a duplicate site.
+  "workers_dev": true,
   // The addresses this site answers on. custom_domain: Cloudflare creates the
   // DNS record and the https certificate for each one automatically.
   "routes": [
