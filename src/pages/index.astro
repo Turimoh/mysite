@@ -5,6 +5,8 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ContactList from '../components/ContactList.astro';
 import { Image } from 'astro:assets';
 import photo from '../assets/maureen-square.jpg';
+import nywele from '../assets/work-nywele-hair.jpg';
+import thisSite from '../assets/work-this-site.jpg';
 
 // The two ways a visitor can go from the hero: one door per audience.
 const doors = [
@@ -125,13 +127,21 @@ const lede = 'mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300';
       <!-- auto-fill + minmax: 3 across, then 2, then 1, with no breakpoints.
            auto-fill (not auto-fit) keeps a lone card card-sized instead of stretching. -->
       <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,19rem),1fr))] gap-8">
-        <!-- TODO(content): replace img/work-1.svg with a real screenshot, then rewrite the alt text -->
+        <ProjectCard
+          title="Nywele Hair"
+          text="A booking site for a mobile Sisterlocs and microlocs stylist in Nairobi. Clients pick a service, a day and a time, then pay an M‑Pesa deposit to hold the slot. Hair oils are ordered through WhatsApp."
+          stack="Astro and Tailwind CSS."
+          image={nywele}
+          alt="Nywele Hair home page: the headline “Healthy. Natural. You.” over a photo of a woman with locs, with Book now and View prices buttons"
+          links={[{ href: 'https://adelle.maureenmuturi.com/', label: 'Live site' }]}
+        />
+
         <ProjectCard
           title="This site"
           text="Three pages, dark mode, and built to stay quick on a slow connection. The home page splits in two at the top: one door for someone hiring, one for someone who needs a website."
           stack="Astro and Tailwind CSS. Deployed on Cloudflare."
-          image="/img/work-1.svg"
-          alt="Placeholder graphic standing in for a screenshot of this site"
+          image={thisSite}
+          alt="This portfolio’s home page: the headline “Websites that load fast and work everywhere.” beside a round photo of Maureen"
           links={[{ href: 'https://github.com/Turimoh/mysite', label: 'GitHub' }]}
         />
         <!-- Next project: add another <ProjectCard … /> here. See ProjectCard.astro for an example. -->
