@@ -15,7 +15,9 @@ const { title, description, noindex = false } = Astro.props;
 
 // Full address of this page, e.g. https://maureenmuturi.com/about/
 const url = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL('/img/og.png', Astro.site).href;
+// The preview picture for shared links (1200×630). /img/ files are cached for a
+// year, so when you replace it, give the new file a new name rather than overwriting.
+const ogImage = new URL('/img/og-share.png', Astro.site).href;
 ---
 
 <!doctype html>
